@@ -94,27 +94,27 @@ if ($uploadOk == 0) {
 $image = $_FILES["fileToUpload"]["name"];
 
 
-	$sql = "UPDATE user SET age='$age', gender='$gender', occupation='$occupation', place='$place', introduce='$introduce', img='$image' WHERE email = '$email'";
+	$sql = "UPDATE admin SET Aage='$age', Agender='$gender', Aoccupation='$occupation', Aplace='$place', Aintroduce='$introduce', Aimg='$image' WHERE Aemail = '$email'";
 
 
 	if($conn->query($sql) === TRUE) {
 		echo "Record is updated successfully";	
 
-		$sql_session = "SELECT * FROM user WHERE email = '$email'";
+		$sql_session = "SELECT * FROM admin WHERE Aemail = '$email'";
 // WHEREにemailとpasswordを指定してるのでどちらもが見つかればその時点でチェックできたことになる。
 	$result = $conn->query($sql_session); 
 
     if($result->num_rows > 0){
  
      while ($row = $result->fetch_assoc()){
-		$name = $row["name"];
-		$email2 = $row["email"];
-		$age = $row["age"];
-		$gender = $row["gender"];
-		$occupation = $row["occupation"];
-		$place = $row["place"];
-		$introduce = $row["introduce"];
-		$img = $row['img'];
+		$name = $row["Aname"];
+		$email2 = $row["Aemail"];
+		$age = $row["Aage"];
+		$gender = $row["Agender"];
+		$occupation = $row["Aoccupation"];
+		$place = $row["Aplace"];
+		$introduce = $row["Aintroduce"];
+		$img = $row['Aimg'];
     
        
 	}
@@ -126,16 +126,7 @@ $image = $_FILES["fileToUpload"]["name"];
     	$_SESSION["place"] = $place;
     	$_SESSION["introduce"] = $introduce;
     	$_SESSION["img"] = $img;
-
     }	
-
-		// echo "NAME: $_SESSION['name']";
-		// echo "E-Mail: $_SESSION['email']";
-		// echo "Age: $age";
-		// echo "gender: $gender";
-		// echo "Occupation: $occupation";
-		// echo "Place: $place";
-		// echo "Self Introduce<br>$introduce";
 	} else {
 		echo "Error during updating record:" . $conn->error;
 	}

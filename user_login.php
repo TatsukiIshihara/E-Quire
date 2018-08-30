@@ -39,6 +39,7 @@ if (isset($_POST["login"])) {
 		$occupation = $row["occupation"];
 		$place = $row["place"];
 		$introduce = $row["introduce"];
+		$img = $row['img'];
 	}
 		$_SESSION["name"] = $name;
     	$_SESSION["email"] = $email2;
@@ -47,7 +48,7 @@ if (isset($_POST["login"])) {
     	$_SESSION["occupation"] = $occupation;
     	$_SESSION["place"] = $place;
     	$_SESSION["introduce"] = $introduce;
-	
+		$_SESSION["img"] = $img;
    
 		header("Location:homepage.php");
 

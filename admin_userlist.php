@@ -12,15 +12,27 @@ include 'dbconnect4.php';
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="homepage.css">
+	<link rel="stylesheet" type="text/css" href="admin_userlist.css">
 </head>
 <body>
 <div class="header">
 	<header>
 	<div class="E-Quire">
-		<input type="button" name='E-Quire' value="E-Quire" onClick="location.href='homepage.php'"
+	<?php	
+	if ($_SESSION["email_A"]=="") { ?>
+		<input type="button" name="E-Quire" value="E-Quire" onClick="location.href='homepage.php'"
 		style="border:none;background-color:transparent;
 					color:blue; font-size:35px; font-style:italic; font-weight: bold;">
+	<?php
+	} else { ?>
+		<input type="button" name="E-Quire" value="E-Quire" onClick="location.href='admin_userlist.php'"
+		style="border:none;background-color:transparent;
+					color:blue; font-size:35px; font-style:italic; font-weight: bold;">
+		(admin)	
+	<?php				
+	}
+		
+	?>				
 	</div>			
 
 		<div class="search">
@@ -46,19 +58,10 @@ include 'dbconnect4.php';
  <div class="profile">
  	<div class="image">
 <?php 
-// $email = $_SESSION["email"];
-// $sql = "SELECT * FROM user WHERE email = '$email'";
-// $result = $conn->query($sql); 
-
-// if($result->num_rows > 0){
-// 	while ($row = $result->fetch_assoc()){
 
 $img = $_SESSION['img'];
       echo    "<img src=uploads/$img width='120' height='120'>";  
-    
-       
-// }
-// }
+   
 ?>
  	</div>
 <h4><i>NAME :　</i><?php  echo $_SESSION["name"]; ?></h4><br>
@@ -71,7 +74,7 @@ $img = $_SESSION['img'];
 <div class="introduction">
 <?php echo $_SESSION["introduce"]; ?>
 </div>
-<input type="button" value="Edit" onClick="location.href='user_edit.php'">
+<input type="button" value="Edit" onClick="location.href='admin_edit.php'">
 </div>
 <?php
 include 'dbconnect4.php';
@@ -114,38 +117,49 @@ if(isset($_POST["submit"])){
 		echo "No match found";
 	}
 } else { 
+	if(isset($_POST["userID"])){
+	$userID = $_POST["userID"];
+	$sql_delete = "DELETE FROM user WHERE userID='$userID'";
+	if ($conn->query($sql_delete) === TRUE) {
+		echo "Record is deleted successfully!!";
+	} else {
+		echo "Error during deleting record.: " . $conn->error;
+	}
+	}
+
 	$username = $_SESSION["name"];
-	$defaultSQL = "SELECT * FROM question WHERE name = '$username'";
+	$defaultSQL = "SELECT * FROM user ";
 	$result2 = $conn->query($defaultSQL);
-echo "<div class='myquestion'>";
-echo "<h2>MY Question</h2><br><br>";
-echo "<form action='askquestion.php' method='POST'>";
-echo "<input type ='submit' name='ask' value = 'AskQuestion'>";
-echo "</form>";
+	echo "<div class='myquestion'>";
+	echo "<h2>User's List</h2><br><br>";
+
 	if ($result2->num_rows > 0) {
 		while($row2 = $result2->fetch_assoc()) {
+			$userID = $row2["userID"];
 			$name = $row2["name"];
-			$category = $row2["category"];
-			$title = $row2["title"];
-			$content = $row2["content"];
-			$questID =$row2["questID"];
+			$email = $row2["email"];
+			$img = $row2['img'];
 			
+			echo "<div class='image'>";
+            echo "<img src=uploads/$img width='120' height='120'>";  
+ 	        echo "</div>";
+ 	        echo "<div class='userinfo'>";
+ 	        echo "ユーザーID : $userID <br>";
 			echo "<form action='user_detail.php' method='POST'>";
-			echo "<a style='font-size:30px; font-style:italic; font-family:'ＭＳ明朝';'>Q</a>";
-			echo "uestion　　　";
+			echo "User Name : ";
 			echo "<input type='hidden' name='name' value='$name'>";
 			echo "<a><input type='submit'  value='$name'
 					style='border:none;background-color:transparent;
 					color:#fcff4c;text-decoration:underline; font-size:20px;'></a>";
 			echo "</form>";
-			
-			echo " <br>";
-			echo "カテゴリー : $category <br>";
-			echo "質問タイトル : $title<br>";
-			echo "<form action='QandA.php' method='POST'>";
-			echo "<input type='hidden' name='questID' value=$questID>";
-			echo "<input type='submit' name='submit' value='詳しく見る'>";
+			echo "E-mail : $email<br>";
+			echo "<form action='admin_userlist.php' method='POST'>";
+			echo "<input type='hidden' name='userID' value='$userID'>";
+			echo "　　　　　　　　　　　     　　　　　　　";
+			echo "<input type='submit' value='Delete' onClick='alert'>";
 			echo "</form>";
+			echo "<br>";
+			echo "</div>";
 			echo "<br><br>";
 		}
 }

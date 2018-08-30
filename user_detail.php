@@ -54,24 +54,30 @@ $result = $conn->query($sql);
 
 if($result->num_rows > 0){
 	while ($row = $result->fetch_assoc()){
-
+$name = $row["name"];
+$email = $row["email"];
+$age = $row["age"];
+$gender = $row["gender"];
+$occupation = $row["occupation"];
+$place = $row["place"];
+$introduce = $row["introduce"];
 $img = $row['img'];
       echo   "<img src=uploads/$img  width='120' height='120'>";  
 }
 }
 ?>
  	</div>
-<h4><i>NAME :　</i><?php  echo $_SESSION["name"]; ?></h4><br>
-<h4><i>E-mail :</i><br><?php echo$_SESSION["email"]; ?></h4>
-<h4><i>Age :　</i><?php echo $_SESSION["age"]; ?></h4>
-<h4><i>Gender :　</i><?php echo $_SESSION["gender"]; ?></h4>
-<h4><i>Occupation :　</i><?PHP echo $_SESSION["occupation"]; ?></h4>
-<h4><i>place :</i><?php echo $_SESSION["place"]; ?></h4>
+<h4><i>NAME :　</i><?php  echo $name; ?></h4><br>
+<h4><i>E-mail :</i><br><?php echo $email; ?></h4>
+<h4><i>Age :　</i><?php echo $age; ?></h4>
+<h4><i>Gender :　</i><?php echo $gender; ?></h4>
+<h4><i>Occupation :　</i><?PHP echo $occupation; ?></h4>
+<h4><i>place :</i><?php echo $place; ?></h4>
 <h4><i>Self Introduction </i></h4>
 <div class="introduction">
-<?php echo $_SESSION["introduce"]; ?>
+<?php echo $introduce; ?>
 </div>
-<input type="button" value="Edit" onClick="location.href='user_edit.php'">
+<!-- <input type="button" value="Edit" onClick="location.href='user_edit.php'"> -->
 </div>
 
 
