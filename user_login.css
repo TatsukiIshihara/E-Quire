@@ -80,6 +80,7 @@ box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,0.5);
 }
 
  input[type="text"],
+ input[type="email"],
  input[type="password"]{
   outline: none;
   border: 1px solid black;
@@ -87,6 +88,7 @@ box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,0.5);
   transition: all .3s;
 }
 input[type="text"]:focus,
+input[type="email"]:focus,
 input[type="password"]:focus {
   box-shadow: 0 0 7px white;
   border: 2px solid white;

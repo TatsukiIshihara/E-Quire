@@ -1,4 +1,3 @@
-
 <?php
 session_start();
  
@@ -8,7 +7,6 @@ if($_SESSION["email"]==""){
 include 'dbconnect4.php';	
 ?>
 <!DOCTYPE html>
-
 <html>
 <head>
 	<title></title>
@@ -18,9 +16,20 @@ include 'dbconnect4.php';
 <div class="header">
 	<header>
 		<div class="E-Quire">
-		<input type="button" name='E-Quire' value="E-Quire" onClick="location.href='homepage.php'"
+			<?php	
+	if ($_SESSION["email_A"]=="") { ?>
+		<input type="button" name="E-Quire" value="E-Quire" onClick="location.href='homepage.php'"
 		style="border:none;background-color:transparent;
 					color:blue; font-size:35px; font-style:italic; font-weight: bold;">
+	<?php
+	} else { ?>
+		<input type="button" name="E-Quire" value="E-Quire" onClick="location.href='admin_userlist.php'"
+		style="border:none;background-color:transparent;
+					color:blue; font-size:35px; font-style:italic; font-weight: bold;">
+		(admin)	
+	<?php				
+	}
+	?>				
 	</div>			
 
 		<div class="search">
@@ -79,7 +88,6 @@ $img = $row['img'];
 </div>
 <!-- <input type="button" value="Edit" onClick="location.href='user_edit.php'"> -->
 </div>
-
 
 </div>
 <div class="footer">

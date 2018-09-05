@@ -76,8 +76,8 @@ if (isset($_POST["login"])) {
 </form>
 </div>
 <br>
-<!-- <input type="button" value="Register" onClick="location.href='insert_activity.php'"
-class="register"> -->
+<input type="button" value="User Login" onClick="location.href='user_login.php'"
+class="register">
 </div>
 <div class="footer">
 	<footer>

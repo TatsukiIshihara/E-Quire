@@ -16,7 +16,22 @@ include 'dbconnect4.php';
 <body>
 <div class="header">
 	<header>
-		<h1>E-Quire</h1>
+		<div class="E-Quire">
+		<?php
+	if ($_SESSION["email_A"]=="") { ?>
+		<input type="button" name="E-Quire" value="E-Quire" onClick="location.href='homepage.php'"
+		style="border:none;background-color:transparent;
+					color:blue; font-size:35px; font-style:italic; font-weight: bold;">
+	<?php
+	} else { ?>
+		<input type="button" name="E-Quire" value="E-Quire" onClick="location.href='admin_userlist.php'"
+		style="border:none;background-color:transparent;
+					color:blue; font-size:35px; font-style:italic; font-weight: bold;">
+		(admin)	
+	<?php				
+	}
+	?>				
+	</div>			
 
 		<div class="search">
 		<form action="homepage.php" method="POST">
@@ -91,9 +106,7 @@ if ($uploadOk == 0) {
     }
 }
 
-$image = $_FILES["fileToUpload"]["name"];
-
-
+	$image = $_FILES["fileToUpload"]["name"];
 	$sql = "UPDATE admin SET Aage='$age', Agender='$gender', Aoccupation='$occupation', Aplace='$place', Aintroduce='$introduce', Aimg='$image' WHERE Aemail = '$email'";
 
 
@@ -134,11 +147,16 @@ $image = $_FILES["fileToUpload"]["name"];
 ?>
 </form>
 <br><br>
-<a href="http://192.168.33.10/E-Quire/homepage.php">Back to Home page </a>
+<a href="http://192.168.33.10/E-Quire/admin_userlist.php">Back to Home page </a>
 </div>
 
 
 <div class="footer">
+	<div class="logout">
+		<input type="button" name='logout' value="Logout" onClick="location.href='logout.php'"
+		style="border:none;background-color:transparent;
+					color:#ffffff; font-size:16px;">
+	</div>				
 	<footer>
 	</footer>	
 </div>

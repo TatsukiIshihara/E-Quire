@@ -49,6 +49,7 @@ if (isset($_POST["login"])) {
     	$_SESSION["place"] = $place;
     	$_SESSION["introduce"] = $introduce;
 		$_SESSION["img"] = $img;
+		$_SESSION["email_A"] = "";
    
 		header("Location:homepage.php");
 
@@ -76,10 +77,13 @@ if (isset($_POST["login"])) {
 <br>
 <input type="button" value="Register" onClick="location.href='user_register.php'"
 class="register">
+<br><br>
+<a href="forget_pass.php">In case you forget your password... </a>
 </div>
+
 <div class="footer">
 	<footer>
-	</footer>	
+	</footer>
 </div>
 
 

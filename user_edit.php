@@ -6,6 +6,7 @@ if($_SESSION["email"]==""){
 	header("Location: user_login.php");
 }	
 include 'dbconnect4.php';	
+
 ?>
 <!DOCTYPE html>
 
@@ -18,9 +19,20 @@ include 'dbconnect4.php';
 <div class="header">
 	<header>
 		<div class="E-Quire">
-		<input type="button" name='E-Quire' value="E-Quire" onClick="location.href='homepage.php'"
+			<?php	
+	if ($_SESSION["email_A"]=="") { ?>
+		<input type="button" name="E-Quire" value="E-Quire" onClick="location.href='homepage.php'"
 		style="border:none;background-color:transparent;
 					color:blue; font-size:35px; font-style:italic; font-weight: bold;">
+	<?php
+	} else { ?>
+		<input type="button" name="E-Quire" value="E-Quire" onClick="location.href='admin_userlist.php'"
+		style="border:none;background-color:transparent;
+					color:blue; font-size:35px; font-style:italic; font-weight: bold;">
+		(admin)	
+	<?php				
+	}
+	?>				
 	</div>			
 
 		<div class="search">
@@ -49,24 +61,13 @@ include 'dbconnect4.php';
 <h2>Registration Form</h2>
  	<div class="image">
 <?php 
-$email = $_SESSION["email"];
-$sql = "SELECT * FROM user WHERE email = '$email'";
-$result = $conn->query($sql); 
-
-if($result->num_rows > 0){
-	while ($row = $result->fetch_assoc()){
-
-$img = $row['img'];
-      echo    "<img src=uploads/$img width='120' height='120'>";  
-    
-       
-}
-}
+$img = $_SESSION['img'];
+      echo    "<img src=uploads/$img width='120' height='120'>";
 ?>
  	</div>
 <p>プロフィール画像</p> 	
 <form action="user_edit2.php"  method="POST" enctype="multipart/form-data"><br>
-	 <input type="file" name="fileToUpload" id="fileToUpload"　>
+	 <input type="file" name="fileToUpload" id="fileToUpload">
  	<p>User Name: <?php echo $_SESSION['name'] ;?> </p><br>
  	<p>E-mail: <?php echo $_SESSION['email']; ?></p><br>
  	<!-- <p>Password: <input type="password" name="password" placeholder="<!>パスワードは８文字"
