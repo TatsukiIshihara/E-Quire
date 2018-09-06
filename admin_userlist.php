@@ -156,7 +156,7 @@ if(isset($_POST["submit"])){
 			echo "<form action='admin_userlist.php' method='POST'>";
 			echo "<input type='hidden' name='userID' value='$userID'>";
 			echo "　　　　　　　　　　　     　　　　　　　";
-			echo "<input type='submit' value='Delete' onClick='alert'>";
+			echo "<input type='submit' value='Delete' onclick='return confirm('Are you sure?') >";
 			echo "</form>";
 			echo "<br>";
 			echo "</div>";

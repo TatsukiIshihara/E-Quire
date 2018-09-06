@@ -119,7 +119,11 @@ if(isset($_POST["submit"])){
 			echo "</div>";
 		}
 	} else {
-		echo "No match found";
+		echo "<div class='result'>";
+		echo "　No Question match found.";
+		echo "<br><br>";
+		echo "　検索結果が見つかりません。他のキーワードやカテゴリで再検索してください。";
+		echo "</div>";
 	}
 } else { 
 	$username = $_SESSION["name"];

@@ -96,7 +96,8 @@ textarea {
 	border-radius: 15px;
 	margin-top: 10px;
 	margin-bottom: 20px;
-	position: fixed;
+	position: absolute;
+	left:  200px;
 }
 .result {
 	padding-left: 10px;

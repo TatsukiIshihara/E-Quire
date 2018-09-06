@@ -71,6 +71,8 @@ img{
 	height: 90px;
 	width: 240px;
 	background-color: white;
+	color: black;
+	font-size: 12px;
 }
 textarea {
 	height: 90px;

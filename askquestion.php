@@ -78,6 +78,7 @@ $img = $row['img'];
 <div class="introduction">
 <?php echo $_SESSION["introduce"]; ?>
 </div>
+<input type="button" value="Edit" onClick="location.href='user_edit.php'">
 </div>
 
 <br>

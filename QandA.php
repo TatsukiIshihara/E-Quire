@@ -165,8 +165,8 @@ $sql_insert = "INSERT INTO answer (questionID, username, content)
 		VALUES('$questID', '$name_answer','$answer')";
 
 		if ($conn->query($sql_insert) === TRUE) {
-			echo "New record created successfully!!";
-			echo "<br><br><a href='retieve_activity.php'>Go to Login page</a>";
+			echo "New record is created successfully!!";
+			echo "<br><br><a href='homepage.php'>Back to home</a>";
 		} else {
 			echo "Error: " . $sql_insert . "<br>" . $conn->error;
 			echo "<br><br><a href='homepage.php'>Back to home</a>";

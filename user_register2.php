@@ -35,38 +35,50 @@ $sql_B = "SELECT * FROM user WHERE email = '$email'";
 $result_B = $conn->query($sql_B); 
 $count= mb_strlen( $name, 'UTF-8');
 
+$error = 0;
+
 if($result_A->num_rows > 0){
+	$error = 1;
+
     // num_rowsが１以上の場合そのユーザーネームは既に使われている為登録できない。
     echo '<font color="red">'."Error: Sorry. This username is already used.".'</font>';
     echo "<br><br>";
     echo '<font color="red">'."Please go back page.".'</font>';
+    echo "<br><br><a href='user_register.php'>Back to Register home</a>";
     echo "<br><br>"	;
 } if($result_B->num_rows > 0){
+	$error = 1;
     // num_rowsが１以上の場合そのアドレスは既に使われている為登録できない。
     echo '<font color="red">'."Error: Sorry. This E-mail address is already used.".'</font>';
     echo "<br><br>";
     echo '<font color="red">'."Please go back page.".'</font>';
+    echo "<br><br><a href='user_register.php'>Back to Register home</a>";
     	
 } if( $count > 16){
+		$error = 1;
 	echo "<br><br>";
     echo '<font color="red">'."　Error: Sorry. Japanese characters must be less than 16 characters."
     		.'</font>';
     echo "<br><br>";
-    echo '<font color="red">'."　Please go back page.".'</font>';		
+    echo '<font color="red">'."　Please go back page.".'</font>';	
+    echo "<br><br><a href='user_register.php'>Back to Register home</a>";	
 
-} else {
-		// num_rowsが０の場合、新しく登録できる。
+}  if ($error == 0) {
+// num_rowsが０の場合、新しく登録できる。
 		$sql_C = "INSERT INTO user (name, email, password, age, gender)
 		VALUES('$name', '$email','$password', '$age','$gender')";
 
 		if ($conn->query($sql_C) === TRUE) {
 			echo "New record created successfully!!";
-			echo "<br><br><a href='retieve_activity.php'>Go to Login page</a>";
+			echo "<br><br><a href='user_login.php'>Go to Login page</a>";
 		} else {
 			echo "Error";
-			echo "<br><br><a href='retieve_activity.php'>Back to Register home</a>";
+			echo "<br><br><a href='user_register.php'>Back to Register home</a>";
 		}	
 	}
+	
+
+		
 
 ?>
 </div>
