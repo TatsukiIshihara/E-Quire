@@ -76,6 +76,8 @@ $img = $_SESSION['img'];
 </div>
 <input type="button" value="Edit" onClick="location.href='admin_edit.php'">
 </div>
+
+
 <?php
 include 'dbconnect4.php';
              
@@ -117,21 +119,24 @@ if(isset($_POST["submit"])){
 		echo "No match found";
 	}
 } else { 
+	echo "<div class='myquestion'>";
+	echo "<h2>User's List</h2><br><br>";
 	if(isset($_POST["userID"])){
 	$userID = $_POST["userID"];
 	$sql_delete = "DELETE FROM user WHERE userID='$userID'";
 	if ($conn->query($sql_delete) === TRUE) {
 		echo "Record is deleted successfully!!";
+		echo "<br>";
 	} else {
 		echo "Error during deleting record.: " . $conn->error;
+		echo "<br>";
 	}
-	}
+}
 
 	$username = $_SESSION["name"];
 	$defaultSQL = "SELECT * FROM user ";
 	$result2 = $conn->query($defaultSQL);
-	echo "<div class='myquestion'>";
-	echo "<h2>User's List</h2><br><br>";
+
 
 	if ($result2->num_rows > 0) {
 		while($row2 = $result2->fetch_assoc()) {

@@ -14,12 +14,8 @@ $name = $_SESSION["name"];
 $category = $_POST["category"];
 $title = $_POST["title"];
 $content = $_POST["content"];
-
-
 include 'dbconnect4.php';
 
-
-	
 		// num_rowsが０の場合、新しく登録できる。
 		$sql = "INSERT INTO question (name, category, title, content)
 		VALUES('$name', '$category','$title', '$content')";
@@ -31,8 +27,6 @@ include 'dbconnect4.php';
 			echo "Error: " . $sql . "<br>" . $conn->error;
 			echo "<br><br>ページを戻ってください</a>";
 		}	
-
-
 ?>
 
 </body>

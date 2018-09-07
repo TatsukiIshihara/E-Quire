@@ -87,7 +87,7 @@ $img = $row['img'];
 
 	
 	<h2>Ask Question</h2>
-	<form action="askquestion2.php" method="POST">
+	<form action="askquestion.php" method="POST">
 		<p>Category: <select name="category" required>
 			<option value="">すべて</option>
 			<option value="スポーツ">スポーツ</option>
@@ -108,8 +108,31 @@ $img = $row['img'];
 		<textarea name="content" required style="height:300px; width:450px; max-width:450px; "></textarea>
  	
  	 	<br>
-    	<input type="submit" name="submit"　value=" Submit ">
+    	<input type="submit" name="register"　value=" Submit ">
 	</form>
+
+	<?php
+	if(isset($_POST["register"])) {
+		$name = $_SESSION["name"];
+		$category = $_POST["category"];
+		$title = $_POST["title"];
+		$content = $_POST["content"];
+		include 'dbconnect4.php';
+
+			// num_rowsが０の場合、新しく登録できる。
+			$sql = "INSERT INTO question (name, category, title, content)
+			VALUES('$name', '$category','$title', '$content')";
+
+			if ($conn->query($sql) === TRUE) {
+				echo "New record created successfully!!";
+				echo "<br><br><a href='retieve_activity.php'>Back to Main home</a>";
+			} else {
+				echo "Error: " . $sql . "<br>" . $conn->error;
+				echo "<br><br>ページを戻ってください</a>";
+			}	
+	}
+		
+	?>
 </div> 	
 <div class="footer">
 	<div class="logout">

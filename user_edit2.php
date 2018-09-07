@@ -133,6 +133,7 @@ $sql = "UPDATE user SET age='$age', gender='$gender', occupation='$occupation', 
 
 	if($conn->query($sql) === TRUE) {
 		echo "Record is updated successfully";	
+		echo "<br><br>";
 
 
 }
@@ -165,13 +166,20 @@ $sql = "UPDATE user SET age='$age', gender='$gender', occupation='$occupation', 
     	$_SESSION["introduce"] = $introduce;
     	$_SESSION["img"] = $img;	
 
-		// echo "NAME: $_SESSION['name']";
-		// echo "E-Mail: $_SESSION['email']";
-		// echo "Age: $age";
-		// echo "gender: $gender";
-		// echo "Occupation: $occupation";
-		// echo "Place: $place";
-		// echo "Self Introduce<br>$introduce";
+		echo "NAME: $name";
+		echo "<br><br>";
+		echo "E-Mail: $email2";
+		echo "<br><br>";
+		echo "Age: $age";
+		echo "<br><br>";
+		echo "gender: $gender";
+		echo "<br><br>";
+		echo "Occupation: $occupation";
+		echo "<br><br>";
+		echo "Place: $place";
+		echo "<br><br>";
+		echo "Self Introduce<br>$introduce";
+		
 	} else {
 		echo "Error during updating record:" . $conn->error;
 	}

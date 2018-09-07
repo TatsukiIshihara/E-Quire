@@ -54,10 +54,10 @@ if($result_A->num_rows > 0){
     echo '<font color="red">'."Please go back page.".'</font>';
     echo "<br><br><a href='user_register.php'>Back to Register home</a>";
     	
-} if( $count > 16){
+} if( $count > 31){
 		$error = 1;
 	echo "<br><br>";
-    echo '<font color="red">'."　Error: Sorry. Japanese characters must be less than 16 characters."
+    echo '<font color="red">'."　Error: Sorry. Japanese characters must be less than 31 characters."
     		.'</font>';
     echo "<br><br>";
     echo '<font color="red">'."　Please go back page.".'</font>';	
