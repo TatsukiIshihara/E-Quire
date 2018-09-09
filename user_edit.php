@@ -78,7 +78,7 @@ $img = $_SESSION['img'];
 		<option value="30代"<?php if($_SESSION['age']=="30代"){echo "selected";}?>>30代</option>
 		<option value="40代"<?php if($_SESSION['age']=="40代"){echo "selected";}?>>40代</option>
 		<option value="50代以上"<?php if($_SESSION['age']=="50代以上"){echo "selected";}?>>50代以上</option></p>
-	</select><br><br>	
+	</select><br><br>
  <p>Gender: <input type="radio" name="gender" value="male"
  				<?php if ($_SESSION['gender'] == "male" ) { echo "checked";}?>
  				 required>Male

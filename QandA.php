@@ -57,19 +57,8 @@ include 'dbconnect4.php';
 <div class="profile">
  	<div class="image">
 <?php 
-$email = $_SESSION["email"];
-$sql = "SELECT * FROM user WHERE email = '$email'";
-$result = $conn->query($sql); 
-
-if($result->num_rows > 0){
-	while ($row = $result->fetch_assoc()){
-
-$img = $row['img'];
-      echo    "<img src=uploads/$img width='120' height='120'>";  
-    
-       
-}
-}
+$img = $_SESSION['img'];
+      echo    "<img src=uploads/$img width='120' height='120'>";
 ?>
  	</div>
 <h4><i>NAME :　</i><?php  echo $_SESSION["name"]; ?></h4><br>
@@ -113,6 +102,24 @@ include 'dbconnect4.php';
 			echo "質問詳細　<br>";
 			echo "$content"."<br>";
 
+			if ($_SESSION["email_A"]!="") {
+				echo "<form action='QandA.php' method='POST'>";
+				echo "<input type='hidden' name='questID' value='$questID'>";
+				echo "　　　　　　　　　　　     　　　　　　　";
+				echo "<input type='submit' name='deleteQ' value='Delete' onclick='return confirm('Are you sure?') >";
+				echo "</form>";
+				if(isset($_POST["deleteQ"])){
+					$sql_delete = "DELETE FROM question WHERE questID='$questID'";
+					if ($conn->query($sql_delete) === TRUE) {
+						
+						header("Location:admin_userlist.php");
+						
+					} else {
+						echo "Error during deleting record.: " . $conn->error;
+						echo "<br>";
+					}
+				}
+			}
 
 		}
 	} else {
@@ -125,6 +132,7 @@ echo "<br><br>";
 		while($row = $result->fetch_assoc()) {
 			$username= $row["username"];
 			$content= $row["content"];
+			$answerID = $row["answerID"];
 
 			echo "<form action='user_detail.php' method='POST'>";
 			echo "<a style='font-size:30px; font-style:italic; font-family:'ＭＳ明朝';'>A</a>";
@@ -136,12 +144,36 @@ echo "<br><br>";
 			echo "</form>";
 			echo "<br>";
 			echo "$content"."<br><br><br><br>";
+
+			if ($_SESSION["email_A"]!="") {
+				echo "<form action='QandA.php' method='POST'>";
+				echo "<input type='hidden' name='questID' value='$questID'>";
+				echo "<input type='hidden' name='AdeleteID' value='$answerID'>";
+				echo "　　　　　　　　　　　     　　　　　　　";
+				echo "<input type='submit' name='deleteA' value='Delete' onclick='return confirm('Are you sure?') >";
+				echo "</form>";
+				if(isset($_POST["deleteA"])){
+					$AdeleteID = $_POST["AdeleteID"];
+					$sql_delete = "DELETE FROM answer WHERE answerID='$AdeleteID'";
+					if ($conn->query($sql_delete) === TRUE) {
+						header("Location:admin_userlist.php");
+						echo "Record is deleted successfully!!";
+						echo "<br>";
+					} else {
+						echo "Error during deleting record.: " . $conn->error;
+						echo "<br>";
+					}
+				}
+			}
+
 			}
 	} else {
 		echo "There is no answer.";
 	}
 	echo "<br><br>";
 ?>
+<?php
+if ($_SESSION["email_A"]==""){ ?>
 <h3>Make new answer</h3>
 <form action="QandA.php"  method="POST">
  	<p>User Name: <?php echo $_SESSION["name"]; ?></p>
@@ -154,10 +186,9 @@ echo "<br><br>";
     <input type="submit" name="submit_A"　value=" Submit ">
 </form>
 
-
 <?php
 
-if(isset($_POST["submit_A"])){
+if(isset($_POST["submit_A"])){	
 $answer = $_POST["answer"];
 $name_answer = $_SESSION['name'];
 
@@ -175,7 +206,7 @@ $sql_insert = "INSERT INTO answer (questionID, username, content)
 	} else {
 		 echo "";
 	}
-
+}
 ?>			
 </div>
 

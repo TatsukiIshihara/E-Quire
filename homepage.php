@@ -62,7 +62,7 @@ include 'dbconnect4.php';
 // 	while ($row = $result->fetch_assoc()){
 
 $img = $_SESSION['img'];
-      echo    "<img src=uploads/$img width='120' height='120'>";  
+      echo    "<img src=uploads/$img width='120' height='120'>";
     
        
 // }

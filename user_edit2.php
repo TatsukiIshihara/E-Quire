@@ -82,7 +82,7 @@ if ($_FILES["fileToUpload"]["name"] != "") {
 	}
 	// Check if file already exists
 	if (file_exists($target_file)) {
-	    // echo "Sorry, file already exists.";
+	    echo "File already exists.";
 	    $uploadOk = 0;
 	}
 	// Check file size
@@ -165,7 +165,7 @@ $sql = "UPDATE user SET age='$age', gender='$gender', occupation='$occupation', 
     	$_SESSION["place"] = $place;
     	$_SESSION["introduce"] = $introduce;
     	$_SESSION["img"] = $img;	
-
+    	echo "<br><br>";
 		echo "NAME: $name";
 		echo "<br><br>";
 		echo "E-Mail: $email2";

@@ -62,7 +62,7 @@ $place = $_POST["place"];
 $introduce = $_POST["introduce"];
 $email = $_SESSION["email"];
 
-
+// サーバーにファイルをアップロード。
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -80,7 +80,7 @@ if(isset($_POST["submit"])) {
 }
 // Check if file already exists
 if (file_exists($target_file)) {
-    // echo "Sorry, file already exists.";
+    echo " File already exists.";
     $uploadOk = 0;
 }
 // Check file size
@@ -105,11 +105,9 @@ if ($uploadOk == 0) {
         echo "Sorry, there was an error uploading your file.";
     }
 }
-
+// SQLにファイルネームだけ保存。
 	$image = $_FILES["fileToUpload"]["name"];
 	$sql = "UPDATE admin SET Aage='$age', Agender='$gender', Aoccupation='$occupation', Aplace='$place', Aintroduce='$introduce', Aimg='$image' WHERE Aemail = '$email'";
-
-
 	if($conn->query($sql) === TRUE) {
 		echo "Record is updated successfully";	
 
