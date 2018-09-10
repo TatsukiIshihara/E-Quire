@@ -50,7 +50,7 @@ include 'dbconnect4.php';
 			<input type="submit" name="submit" value="Submit">
 		</form>
 		</div>
-	</header>	
+	</header>
 
 <div class="profile">
 <?php
@@ -58,7 +58,7 @@ include 'dbconnect4.php';
 $age = $_POST["age"];
 $gender = $_POST["gender"];
 $occupation =  $_POST["occupation"];
-$place = $_POST["place"]; 
+$place = $_POST["place"];
 $introduce = $_POST["introduce"];
 $email = $_SESSION["email"];
 
@@ -154,7 +154,7 @@ if ($uploadOk == 0) {
 		<input type="button" name='logout' value="Logout" onClick="location.href='logout.php'"
 		style="border:none;background-color:transparent;
 					color:#ffffff; font-size:16px;">
-	</div>				
+	</div>
 	<footer>
 	</footer>	
 </div>

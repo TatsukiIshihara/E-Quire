@@ -95,3 +95,6 @@ textarea {
 	position: fixed;
 
 }
+input[name="logout"] {
+	cursor : pointer;
+}

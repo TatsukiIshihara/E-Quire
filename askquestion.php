@@ -125,7 +125,7 @@ $img = $row['img'];
 
 			if ($conn->query($sql) === TRUE) {
 				echo "New record created successfully!!";
-				echo "<br><br><a href='retieve_activity.php'>Back to Main home</a>";
+				echo "<br><br><a href='homepage.php'>Back to Main home</a>";
 			} else {
 				echo "Error: " . $sql . "<br>" . $conn->error;
 				echo "<br><br>ページを戻ってください</a>";

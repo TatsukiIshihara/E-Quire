@@ -129,5 +129,7 @@ img{
 	position: fixed;
 
 }
-
+input[name="logout"] {
+	cursor : pointer;
+}
 

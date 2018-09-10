@@ -22,6 +22,7 @@
  	<p>Password: <input type="password" name="password" placeholder="<!>パスワードは８文字"
  					 maxlength="8" minlength="8" required></p><br>
  <p>Age: <select name="age" required>
+ 		<option value="" selected="selected">選択してください</option>
 		<option value="10代">10代</option>
 		<option value="20代">20代</option>
 		<option value="30代">30代</option>

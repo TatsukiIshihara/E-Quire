@@ -131,6 +131,8 @@ img{
 	margin-bottom: 10px;
 	margin-left: 1120px;
 	position: fixed;
-
 }
 
+input[name="logout"] {
+	cursor : pointer;
+}

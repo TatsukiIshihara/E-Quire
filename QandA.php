@@ -77,7 +77,7 @@ $img = $_SESSION['img'];
 <div class='result'>
 <?php
 include 'dbconnect4.php';
-	$questID = $_POST["questID"]; 	
+	$questID = $_POST["questID"]; 
 	// var_dump($questID);
 	 $SQL = "SELECT * FROM question WHERE questID='$questID'";
 	$result = $conn->query($SQL);
