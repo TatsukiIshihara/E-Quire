@@ -61,7 +61,7 @@ if ($_FILES["fileToUpload"]["name"] != "") {
 	$age = $_POST["age"];
 	$gender = $_POST["gender"];
 	$occupation =  $_POST["occupation"];
-	$place = $_POST["place"]; 
+	$place = $_POST["place"];
 	$introduce = $_POST["introduce"];
 	$email = $_SESSION["email"];
 
@@ -70,6 +70,8 @@ if ($_FILES["fileToUpload"]["name"] != "") {
 	$uploadOk = 1;
 	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 	// Check if image file is a actual image or fake image
+
+
 	if(isset($_POST["submit"])) {
 	    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 	    if($check !== false) {
@@ -82,29 +84,43 @@ if ($_FILES["fileToUpload"]["name"] != "") {
 	}
 	// Check if file already exists
 	if (file_exists($target_file)) {
-	    echo "File already exists.";
-	    $uploadOk = 0;
+	    echo "profile picture already exists. But, it is changed successfully.";
+	    $uploadOk = 2;
 	}
 	// Check file size
-	if ($_FILES["fileToUpload"]["size"] > 30000000) {
+	if ($_FILES["fileToUpload"]["size"] > 2000000) {
 	    echo "Sorry, your file is too large.";
+	    echo "<br>";
 	    $uploadOk = 0;
 	}
 	// Allow certain file formats
 	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 	&& $imageFileType != "gif" ) {
 	    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+		echo "<br>";
 	    $uploadOk = 0;
 	}
 	// Check if $uploadOk is set to 0 by an error
 	if ($uploadOk == 0) {
-	    echo "Sorry, your file was not uploaded.";
+	    echo "Sorry, your picture was not uploaded.";
+	    echo "<br>";
 	// if everything is ok, try to upload file
 
-	} else {
+	}elseif ($uploadOk == 2) {
+		echo "";
+	}else{
 	    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+	    	
+	    	$deleteIMG = $_SESSION['img'];
+  			unlink('uploads/'.$deleteIMG);
+ 
+ 			 // 削除済みのメッセージを表示
+  			// echo $deleteIMG.'を削除しました。<br>';
+
 	        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+
 	    } else {
+	    	echo "<br>";
 	        echo "Sorry, there was an error uploading your file.";
 	    }
 	}
@@ -113,7 +129,8 @@ if ($_FILES["fileToUpload"]["name"] != "") {
 		$sql = "UPDATE user SET age='$age', gender='$gender', occupation='$occupation', place='$place', introduce='$introduce', img='$image' WHERE email = '$email'";
 
 		if($conn->query($sql) === TRUE) {
-			echo "Record is updated successfully";	
+			echo "<br>";
+			echo "Other information is updated successfully";	
 		}		
 }
 
@@ -187,7 +204,7 @@ $sql = "UPDATE user SET age='$age', gender='$gender', occupation='$occupation', 
 ?>
 </form>
 <br><br>
-<a href="http://192.168.33.10/E-Quire/homepage.php">Back to Home page </a>
+<a href="homepage.php">Back to Home page </a>
 </div>
 
 

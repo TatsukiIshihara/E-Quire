@@ -27,10 +27,10 @@ include 'dbconnect4.php';
 		style="border:none;background-color:transparent;
 					color:blue; font-size:35px; font-style:italic; font-weight: bold;">
 		(admin)	
-	<?php				
+	<?php	
 	}
-	?>				
-	</div>			
+	?>
+	</div>
 
 		<div class="search">
 		<form action="homepage.php" method="POST">
@@ -56,7 +56,7 @@ include 'dbconnect4.php';
 <h2>User Information</h2>
  	<div class="image">
 <?php 
-include 'dbconnect4.php';	
+include 'dbconnect4.php';
 $name = $_POST["name"];
 $sql = "SELECT * FROM user WHERE name = '$name'";
 $result = $conn->query($sql);
